@@ -6,7 +6,7 @@
 #    By: filferna <filferna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/04 13:54:13 by filferna          #+#    #+#              #
-#    Updated: 2024/08/05 15:00:13 by filferna         ###   ########.fr        #
+#    Updated: 2024/08/20 11:38:40 by filferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,22 +20,24 @@ LIBFT = ./libft/libft.a
 
 PRINTF = ./ft_printf/libftprintf.a
 
+LIBS = $(LIBFT) $(PRINTF)
+
 COMPILER = cc
 
 FLAGS = -Wall -Werror -Wextra
 
 
-all:libs $(NAME)
+all:$(LIBS) $(NAME)
 
 $(NAME):
 
-server: $(SV)
+server: $(SV) $(LIBFT) $(PRINTF)
 	$(COMPILER) $(FLAGS) $(SV) $(LIBFT) $(PRINTF) -o server
 	
-client: $(CL)
+client: $(CL) $(LIBFT) $(PRINTF)
 	$(COMPILER) $(FLAGS) $(CL) $(LIBFT) $(PRINTF) -o client
 
-libs:
+$(LIBS):
 	$(MAKE) -C ./libft
 	$(MAKE) -C ./ft_printf
 

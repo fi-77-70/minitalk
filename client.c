@@ -6,7 +6,7 @@
 /*   By: filferna <filferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 13:46:31 by filferna          #+#    #+#             */
-/*   Updated: 2024/08/19 17:55:26 by filferna         ###   ########.fr       */
+/*   Updated: 2024/08/20 12:06:16 by filferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	str_sender(char *str, int id)
 			else
 				kill(id, SIGUSR2);
 			bits--;
-			usleep(adaptive_sleep(60000));
+			usleep(adaptive_sleep(ft_strlen(str)));
 		}
 		i++;
 		bits = 7;
 	}
-	usleep(10000);
+	usleep(ft_strlen(str));
 	return ;
 }
 
@@ -59,7 +59,7 @@ int	main(int ac, char **av)
 {
 	(void)av;
 	if (ac != 3)
-		return (ft_printf("ERROR FORMAT --> Correct use (./client (server pid) (\"sentece\"))"));
+		return (ft_printf("Error: use (./client server pid \"sentece\")"));
 	str_sender(av[2], ft_atoi(av[1]));
 	return (0);
 }
